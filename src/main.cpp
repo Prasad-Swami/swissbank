@@ -31,7 +31,7 @@ int main(){
 				break;
 
 			case 3:
-				BA.depositeMoney();
+				BA.depositMoney();
 				break;
 
 			case 4:
@@ -48,11 +48,7 @@ int main(){
 		}
 
 	}while(option != 5);
-
-
-	
 	return 0;
-
 }
 
 

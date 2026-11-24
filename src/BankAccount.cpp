@@ -4,10 +4,12 @@
 void BankAccount::createAccount(){
     std::cout<<"Welcome to Swiss Bank, Create you new Account" << "\n";
     std::cout << "Enter your Name: ";
+    std::cin >> std::ws;
     std::getline(std::cin, customerName);
     std::cout << "Your Account Number: ";
-    accountNo = ++counter;
+    accountNo = std::to_string(++counter);
     std::cout << accountNo << std::endl; 
+    accountCreated = true;
 }
 
 double BankAccount::getBalance(){
@@ -15,12 +17,21 @@ double BankAccount::getBalance(){
 }
 
 void BankAccount::displayAccountDetails(){
+    if(!accountCreated){
+        std::cout << "Account Status unable to found \n ";
+        return;
+    }
     std::cout << "Account Holder Name: " << customerName << "\n";
     std::cout << "Account Number: " << accountNo << "\n";
     std::cout << "Available Balance: " << getBalance() << "\n";
 }
 
-void BankAccount::depositeMoney(){
+void BankAccount::depositMoney(){
+    if(!accountCreated){
+        std::cout << "Requested to create Account, before proceeding \n";
+        return;
+    }
+    double depositeAmt;
     std::cout << "Deposite the Amount Here \n";
     std::cin >> depositeAmt;
     if(depositeAmt > 0){
@@ -31,10 +42,15 @@ void BankAccount::depositeMoney(){
     }
 }
 
-double BankAccount::withdrawMoney(){
+void BankAccount::withdrawMoney(){
+    if(!accountCreated){
+        std::cout << "Account Status unable to found \n";
+        return;
+    }
+    double withdrawAmt;
     std::cout << "Enter the Amount to Withdraw \n";
     std::cin >> withdrawAmt;
-    if(withdrawAmt > 0 && withdrawAmt < balance){
+    if(withdrawAmt > 0 && withdrawAmt <= balance){
         balance -= withdrawAmt;
         std::cout << "The Deducted Amount is: " << withdrawAmt << "\n";
         std::cout << "Available Balance is: " << getBalance() << "\n";
