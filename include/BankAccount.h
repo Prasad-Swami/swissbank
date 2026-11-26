@@ -12,4 +12,5 @@ public:
     double getBalance();
     void depositMoney();
     void withdrawMoney();
+    std::string getAccountNo();
 };

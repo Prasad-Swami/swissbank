@@ -2,6 +2,10 @@
 #include "BankAccount.h"
 
 void BankAccount::createAccount(){
+    if(accountCreated){
+        std::cout << "Account is Alredy created \n";
+        return;
+    }
     std::cout<<"Welcome to Swiss Bank, Create you new Account" << "\n";
     std::cout << "Enter your Name: ";
     std::cin >> std::ws;
@@ -57,4 +61,8 @@ void BankAccount::withdrawMoney(){
     }else{
         std::cout << "Invalid Amount" << "\n";
     }
+}
+
+std::string BankAccount::getAccountNo(){
+    return accountNo;
 }
